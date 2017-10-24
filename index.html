@@ -8,7 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 	<body style="height: 10000px;">
-		<ul class="list_box">
+		<ul class="ysblist_box">
 			<li class="Relation" data-href=".modelRelation"><img src="img/tel.png" width="100%" /></li>
 			<li><img src="img/QQ.png" width="100%" /></li>
 			<li class="Messages" data-href=".modelMessages"><img src="img/liuyan.png" width="100%" /></li>
@@ -29,7 +29,7 @@
 					<h6 class="allCls">关闭</h6>
 				</div>
 				<div class="model_QRcode">
-					<h1>电话咨询信息<i class="bg allCls"></i></h1>
+					<h1>电话咨询信息<i class="ysbbg allCls"></i></h1>
 					<div class="QRcode_tel">
 						<p class="QRcode_valueTop">输入您的电话，我们立即联系您</p>
 						<p class="QRcode_value"></p>
@@ -65,7 +65,7 @@
 		</div>
 		<div class="modelBox modelMessages">
 			<div class="model_Messages">
-				<h1>请输入您的留言<i class="bg allCls"></i></h1>
+				<h1>请输入您的留言<i class="ysbbg allCls"></i></h1>
 				<div class="Messages_name">
 					<p>
 						<i class="iconfont icon-name"></i>
@@ -89,7 +89,7 @@
 		</div>
 		<div class="modelBox modelWeChat">
 			<div class="model_WeChat">
-				<h1>长按二维码加我微信<i class="bg allCls"></i></h1>
+				<h1>长按二维码加我微信<i class="ysbbg allCls"></i></h1>
 				<img src="img/t.png" / width="100%">
 				<p>长按二维码加我微信</p>
 				<h6 class="allCls">关闭</h6>
@@ -98,54 +98,64 @@
 		<script src="js/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript">
 			/*弹出框*/
-			$(".list_box li").on("click", function() {
-	    		var id = $(this).attr("data-href")
+			$(".ysblist_box li").on("click", function() {
+	    		var id = $(this).attr("data-href");
 				if(id !== undefined) {
-					$(id).addClass("show")
+					$(id).addClass("ysbshow");
 				}
 			})
 			/*关闭弹出框*/
 			$(".allCls").on("click", function() {
-				$(".modelBox").removeClass("show")
+				$(".modelBox").removeClass("ysbshow");
 			})
 			$("#abt").click(function(){
-				$(".allCls").click()
+				$(".allCls").click();
 			})
 			/*拨号键盘*/
 			$(".QRcode_phone>ol>li").on("click", function() {
-				$(".QRcode_valueTop").addClass("hidder")
-				$(".QRcode_value").addClass("show")
-				$(".QRcode_value").html($(".QRcode_value").html() + $(this).html())
-				$(".QRcode_I").addClass("show")
+				$(".QRcode_valueTop").addClass("ysbhidder");
+				$(".QRcode_value").addClass("ysbshow");
+				$(".QRcode_value").html($(".QRcode_value").html() + $(this).html());
+				$(".QRcode_I").addClass("ysbshow");
 			})
 			/*电话号的修改*/
 			$(".QRcode_I").on("click", function() {
-				var arr = $(".QRcode_value").html()
-				arr = arr.substr(0, arr.length - 1)
-				$(".QRcode_value").html(arr)
+				var arr = $(".QRcode_value").html();
+				arr = arr.substr(0, arr.length - 1);
+				$(".QRcode_value").html(arr);
 				if(arr.length == 0) {
-					$(this).removeClass("show")
-					$(".QRcode_valueTop").removeClass("hidder")
-					$(".QRcode_value").removeClass("show")
+					$(this).removeClass("ysbshow");
+					$(".QRcode_valueTop").removeClass("ysbhidder");
+					$(".QRcode_value").removeClass("ysbshow");
 				}
 			})
 			/*旋转二维码*/
 			$(".model_left").on("click", function() {
-				$(".model_relation").addClass("show2")
-				$(".model_QRcode").addClass("hidder")
+				$(".model_relation").addClass("ysbshow2");
+				$(".model_QRcode").addClass("ysbhidder");
 				$(".model_translateX").css("transform", "rotateY(180deg)");
 			})
 			/*旋转电话*/
 			$(".model_right").on("click", function() {
-				$(".model_relation").removeClass("show2")
-				$(".model_QRcode").removeClass("hidder")
+				$(".model_relation").removeClass("ysbshow2");
+				$(".model_QRcode").removeClass("ysbhidder");
 				$(".model_translateX").css("transform", "rotateY(0deg)");
 			})
 			/*回到顶部*/
-			$('.tap').click(function() {
-				window.scrollTo(0,0);				
-			})
-
+//			$('.tap').click(function() {
+//				window.scrollTo(0,0);				
+//			})
+			$('.tap').on('touchend',function(){
+				var T = $(window).scrollTop();
+				var t = setInterval(function(){
+				if(T < 0){
+				    clearInterval( t );
+				}else{
+				    T -= 50;
+				    $(window).scrollTop(T);
+				}
+				},13);
+	        });
 		</script>
 	</body>
 	
