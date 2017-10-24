@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+	<body style="height: 1000px;">
+		<ul class="list_box">
+			<li class="Relation" data-href=".modelRelation"><img src="img/tel.png" width="100%" /></li>
+			<li><img src="img/QQ.png" width="100%" /></li>
+			<li class="Messages" data-href=".modelMessages"><img src="img/liuyan.png" width="100%" /></li>
+			<li class="WeChat" data-href=".modelWeChat"><img src="img/weixin.png" width="100%" /></li>
+			<li><img src="img/home.png" width="100%" /></li>
+			<li class="tap"><img src="img/top.png" width="100%" /></li>
+		</ul>
+		<div class="modelBox modelRelation">
+			<div class="model_translateX">
+				<div class="model_relation">
+					<h1>长按二维码生成用户信息</h1>
+					<img src="img/t.png" / width="100%">
+					<div class="model_cut">
+						<a href="#"><img src="img/weixin.png" width="100%" /></a>
+						<a href="#"><img src="img/boda.png" width="100%" /></a>
+						<a href="#" class="model_right"><img src="img/tel.png" width="100%" /></a>
+					</div>
+					<h6 class="allCls">关闭</h6>
+				</div>
+				<div class="model_QRcode">
+					<h1>电话咨询信息<i class="bg allCls"></i></h1>
+					<div class="QRcode_tel">
+						<p class="QRcode_valueTop">输入您的电话，我们立即联系您</p>
+						<p class="QRcode_value"></p>
+						<i class="QRcode_I iconfont icon-wenzishanchu"></i>
+					</div>
+					<div class="QRcode_phone">
+						<ol class="phone_list">
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+							<li>6</li>
+							<li>7</li>
+							<li>8</li>
+							<li>9</li>
+							<li>*</li>
+							<li>0</li>
+							<li>#</li>
+						</ol>
+					</div>
+					<div class="model_sub">
+						<button>立即接听免费电话</button>
+					</div>
+					<div class="model_cut">
+						<a href="#" class="model_left"><img src="img/weixin.png" width="100%" /></a>
+						<a href="#"><img src="img/boda.png" width="100%" /></a>
+						<a href="#"><img src="img/tel.png" width="100%" /></a>
+					</div>
+					<h6 class="allCls">关闭</h6>
+				</div>				
+			</div>
+		</div>
+		<div class="modelBox modelMessages">
+			<div class="model_Messages">
+				<h1>请输入您的留言<i class="bg allCls"></i></h1>
+				<div class="Messages_name">
+					<p>
+						<i class="iconfont icon-name"></i>
+						<input type="text" placeholder="请输入您的姓名：" />
+					</p>
+					<p>
+						<i class="iconfont icon-tel"></i>
+						<input type="text" placeholder="请输入您的电话：" />
+					</p>
+					<p>
+						<i class="iconfont icon-youxiang" style="font-size: 26px;"></i>
+						<input type="text" placeholder="请输入您的邮箱：" />
+					</p>
+				</div>
+				<textarea placeholder="请留言："></textarea>
+				<div class="model_sub">
+					<button id="abt">提交</button>
+				</div>
+				<h6 class="allCls">关闭</h6>
+			</div>
+		</div>
+		<div class="modelBox modelWeChat">
+			<div class="model_WeChat">
+				<h1>长按二维码加我微信<i class="bg allCls"></i></h1>
+				<img src="img/t.png" / width="100%">
+				<p>长按二维码加我微信</p>
+				<h6 class="allCls">关闭</h6>
+			</div>
+		</div>
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript">
+			/*弹出框*/
+			$(".list_box li").on("click", function() {
+	    		var id = $(this).attr("data-href")
+				if(id !== undefined) {
+					$(id).addClass("show")
+				}
+			})
+			/*关闭弹出框*/
+			$(".allCls").on("click", function() {
+				$(".modelBox").removeClass("show")
+			})
+			$("#abt").click(function(){
+				$(".allCls").click()
+			})
+			/*拨号键盘*/
+			$(".QRcode_phone>ol>li").on("click", function() {
+				$(".QRcode_valueTop").addClass("hidder")
+				$(".QRcode_value").addClass("show")
+				$(".QRcode_value").html($(".QRcode_value").html() + $(this).html())
+				$(".QRcode_I").addClass("show")
+			})
+			/*电话号的修改*/
+			$(".QRcode_I").on("click", function() {
+				var arr = $(".QRcode_value").html()
+				arr = arr.substr(0, arr.length - 1)
+				$(".QRcode_value").html(arr)
+				if(arr.length == 0) {
+					$(this).removeClass("show")
+					$(".QRcode_valueTop").removeClass("hidder")
+					$(".QRcode_value").removeClass("show")
+				}
+			})
+			/*旋转二维码*/
+			$(".model_left").on("click", function() {
+				$(".model_relation").addClass("show2")
+				$(".model_QRcode").addClass("hidder")
+				$(".model_translateX").css("transform", "rotateY(180deg)");
+			})
+			/*旋转电话*/
+			$(".model_right").on("click", function() {
+				$(".model_relation").removeClass("show2")
+				$(".model_QRcode").removeClass("hidder")
+				$(".model_translateX").css("transform", "rotateY(0deg)");
+			})
+			/*回到顶部*/
+			$('.tap').click(function() {
+				window.scrollTo(0,0);
+				$("html").scrollTo(0,0);
+				$("body").scrollTo(0,0);
+			})
+			
+		</script>
+	</body>
+	
