@@ -7,14 +7,14 @@
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
-	<body style="height: 1000px;">
+	<body style="height: 10000px;">
 		<ul class="list_box">
 			<li class="Relation" data-href=".modelRelation"><img src="img/tel.png" width="100%" /></li>
 			<li><img src="img/QQ.png" width="100%" /></li>
 			<li class="Messages" data-href=".modelMessages"><img src="img/liuyan.png" width="100%" /></li>
 			<li class="WeChat" data-href=".modelWeChat"><img src="img/weixin.png" width="100%" /></li>
 			<li><img src="img/home.png" width="100%" /></li>
-			<li class="tap"><img src="img/top.png" width="100%" /></li>
+			<li class="tap"><a href="#"><img src="img/top.png" width="100%" /></a></li>
 		</ul>
 		<div class="modelBox modelRelation">
 			<div class="model_translateX">
@@ -143,8 +143,7 @@
 			})
 			/*回到顶部*/
 			$('.tap').click(function() {
-				window.scrollTo(0,0);
-				
+				window.scrollTo(0,0);				
 			})
 
 		</script>
